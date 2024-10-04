@@ -1,0 +1,22 @@
+
+
+.text {
+    margin: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: darkslateblue;
+    color: white;
+
+    width: 50%;
+    border-radius: 10px;
+}
+
+.text-message {
+    margin: 0;
+}
+
+.text-sender {
+
+}
+
