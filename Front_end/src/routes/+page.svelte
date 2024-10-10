@@ -2,7 +2,10 @@
 
 import Text from "$lib/components/Text/Text.svelte";
 
-const messages = [
+
+
+
+let messages = [
     {message: "Hello there", sender: "Liam", time:"00:00:00"},
     {message: "Hey, how's it going?", sender: "Max",time:"00:00:10"},
     {message: "pretty good you !", sender: "Liam", time:"00:00:12"},
@@ -48,7 +51,6 @@ const messages = [
     {message: "bit janky but it works", sender: "Liam",time:"00:01:15"},
     {message: "おやすみなさい", sender: "Max",time:"00:02:00"},
     {message: "wtf is that ?", sender: "Liam",time:"00:02:01"},
-    {message: "bro wtf?", sender: "Masoud",time:"00:02:02"},
     {message: "why you gotta be weird like that ?", sender: "Liam",time:"00:02:02"},
     {message: "alright alright good night ", sender: "Max",time:"00:02:00"},
 
@@ -59,7 +61,22 @@ let text: string ="";
 
 
 
+function submitText() {
+    messages = [...messages, {
+        sender: fname,
+        message: text,
+        time: new Date().toLocaleString()
+    }];
+    text = "";
+    console.log(messages);
+    window.scrollTo(0, document.body.scrollHeight);
+
+}
+
+
+
 </script>
+
 
 
 {#each messages as text}
@@ -75,8 +92,7 @@ let text: string ="";
 <style>
     :global(body) {
         margin: 0;
-        padding: 0;
-        padding-bottom: 75px;
+        padding-bottom: 70px;
         background-color: #232323;
 
     }
@@ -84,7 +100,7 @@ let text: string ="";
     input[type=text]{
         position: fixed;
         width:90%;
-        color: black;
+
         bottom:35px;
         background-color: rgba(35,35,35,60%);
         border-style: solid;
@@ -121,7 +137,7 @@ let text: string ="";
 </style>
 <div class="box">
 
-    <form>
+    <form on:submit|preventDefault={submitText}>
 
         <input type="text" bind:value={text} class="input-text" placeholder="Input message : ">
     </form>
